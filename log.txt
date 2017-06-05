@@ -1,0 +1,16 @@
+os is : nt
+user: desktop.ini
+End
+user: Guest
+desktop.ini,Dev-C++.lnk,End
+user: jinfeng
+1111.txt,360云盘.lnk,360安全卫士.lnk,360安全浏览器.lnk,360软件管家.lnk,51CTO下载-网规论文范文50套.rar,BHP-Code,Book2.xls,Send this file! 
+Cisco Packet Tracer Student.lnk,desktop.ini,Dev-C++.lnk,due.py,ico,MTS转换精灵.lnk,OAAO交互设置(3).doc,Send this file! 
+This file is being used. python灰帽子.doc,Send this file! 
+This file is being used. RSA加密,test,VirtualBox.exe.lnk,__MACOSX,《Metasploit渗透测试魔鬼训练营》.(诸葛建伟等).[PDF]@ckook.pdf,三项补贴,低保汇总表.xls,Send this file! 
+This file is being used. 出车证明.wps,勒索病毒救灾.lnk,县医院,县医院复印费J.xls,Send this file! 
+This file is being used. 地税,审计局电子政务华三配置.txt,微信.lnk,新建 WPS表格 工作簿.et,河南省审计厅关于印发河南省审计系统计算机审计能手评选暂行办法的通知.doc,Send this file! 
+This file is being used. 申报表.doc,Send this file! 
+This file is being used. 附件2.wps,End
+user: UpdatusUser
+Dev-C++.lnk,End
