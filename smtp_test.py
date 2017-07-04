@@ -7,10 +7,10 @@ from email.mime.text import MIMEText
 import time
 import os
 
-mailto_list=['94644276@qq.com']           #收件人(列表)
+mailto_list=['mail address']           #收件人(列表)
 mail_host="smtp.tom.com"            #使用的邮箱的smtp服务器地址
 mail_user="smtp2016"                           #用户名
-mail_pass="jinfeng305"                             #密码
+mail_pass="password"                             #密码
 mail_postfix="tom.com"                     #邮箱的后缀
 print u'请输入发送的邮箱地址（格式如 123@qq.com）：'
 mailto_list.append(raw_input())

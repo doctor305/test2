@@ -5,8 +5,8 @@ import base64
 import random
 
 def connect_to_github():  
-    gh=login(username="doctor305",password="<password>")  
-    repo=gh.repository("doctor305","test")  
+    gh=login(username="user",password="<password>")  
+    repo=gh.repository("user","test")  
     branch=repo.branch("master")  
     return gh,repo,branch
   
