@@ -32,6 +32,7 @@
 import win32api
 import win32con
 from ctypes import *
+import win32clipboard
 
 def autoinput(keycode):
     win32api.keybd_event(keycode,0,0,0)   #按键
@@ -51,8 +52,23 @@ def combinationkey_3(com_keycode,com_keycode1,keycode):
     win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  
     win32api.keybd_event(com_keycode,0,win32con.KEYEVENTF_KEYUP,0)
     win32api.keybd_event(com_keycode1,0,win32con.KEYEVENTF_KEYUP,0)
+def gettext():
+    '''
+        获取剪切板内容
+    '''
+    win32clipboard.OpenClipboard()
+    t = w.GetClipboardData(win32con.CF_TEXT)
+    win32clipboard.CloseClipboard()
+    return t
 
-
+def settext(aString):
+    '''
+        写入剪切板内容
+    '''
+    w.OpenClipboard()
+    w.EmptyClipboard()
+    w.SetClipboardData(win32con.CF_TEXT, aString)
+    w.CloseClipboard()
 
 combinationkey_3(17,18,90)
 autoinput(ord('z'))

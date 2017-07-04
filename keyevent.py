@@ -2,6 +2,7 @@
 
 import win32api
 import win32con
+import win32clipboard
 
 '''
 字母和数字键     数字小键盘的键       功能键         其它键 
@@ -28,6 +29,7 @@ import win32con
       T   84       --   --       --   --      Delete      46 
       U   85       --   --       --   --      Help       47 
       V   86       --   --       --   --      Num Lock     144
+      其他未列出的字母和数字键盘为：ord(c)
 '''
 
 win32api.keybd_event(17,0,0,0)  #ctrl键位码是17
@@ -37,3 +39,21 @@ win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)
 
 from ctypes import *
 windll.user32.SetCursorPos(100, 100) # 鼠标模拟
+
+def gettext():
+    '''
+        获取剪切板内容
+    '''
+    win32clipboard.OpenClipboard()
+    t = w.GetClipboardData(win32con.CF_TEXT)
+    win32clipboard.CloseClipboard()
+    return t
+
+def settext(aString):
+    '''
+        写入剪切板内容
+    '''
+    w.OpenClipboard()
+    w.EmptyClipboard()
+    w.SetClipboardData(win32con.CF_TEXT, aString)
+    w.CloseClipboard()
