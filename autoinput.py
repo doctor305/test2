@@ -1,9 +1,7 @@
-# -*- coding:utf-8 -*-
-
-import win32api
-import win32con
+# -*- coding: utf-8 -*-
 
 '''
+附个键位码表：
 字母和数字键     数字小键盘的键       功能键         其它键 
       键   键码     键   键码       键   键码     键      键码 
       A   65       0   96        F1   112     Backspace    8 
@@ -28,12 +26,38 @@ import win32con
       T   84       --   --       --   --      Delete      46 
       U   85       --   --       --   --      Help       47 
       V   86       --   --       --   --      Num Lock     144
+其他未列出的字母和数字键盘为：ord(c)
 '''
 
-win32api.keybd_event(17,0,0,0)  #ctrl键位码是17
-win32api.keybd_event(86,0,0,0)  #v键位码是86
-win32api.keybd_event(86,0,win32con.KEYEVENTF_KEYUP,0) #释放按键
-win32api.keybd_event(17,0,win32con.KEYEVENTF_KEYUP,0)
-
+import win32api
+import win32con
 from ctypes import *
-windll.user32.SetCursorPos(100, 100) # 鼠标模拟
+
+def autoinput(keycode):
+    win32api.keybd_event(keycode,0,0,0)   #按键
+    win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  # 释放按键
+
+
+def combinationkey(com_keycode,keycode):
+    win32api.keybd_event(com_keycode,0,0,0)
+    win32api.keybd_event(keycode,0,0,0) 
+    win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  
+    win32api.keybd_event(com_keycode,0,win32con.KEYEVENTF_KEYUP,0)
+
+def combinationkey_3(com_keycode,com_keycode1,keycode):
+    win32api.keybd_event(com_keycode,0,0,0)
+    win32api.keybd_event(com_keycode1,0,0,0) 
+    win32api.keybd_event(keycode,0,0,0) 
+    win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  
+    win32api.keybd_event(com_keycode,0,win32con.KEYEVENTF_KEYUP,0)
+    win32api.keybd_event(com_keycode1,0,win32con.KEYEVENTF_KEYUP,0)
+
+
+
+combinationkey_3(17,18,90)
+autoinput(ord('z'))
+autoinput(ord('h'))
+
+
+
+    
