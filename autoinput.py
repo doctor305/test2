@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- coding: gb2312 -*-
 
 '''
-é™„ä¸ªé”®ä½ç è¡¨ï¼š
-å­—æ¯å’Œæ•°å­—é”®     æ•°å­—å°é”®ç›˜çš„é”®       åŠŸèƒ½é”®         å…¶å®ƒé”® 
-      é”®   é”®ç      é”®   é”®ç        é”®   é”®ç      é”®      é”®ç  
+¸½¸ö¼üÎ»Âë±í£º
+×ÖÄ¸ºÍÊı×Ö¼ü     Êı×ÖĞ¡¼üÅÌµÄ¼ü       ¹¦ÄÜ¼ü         ÆäËü¼ü 
+      ¼ü   ¼üÂë     ¼ü   ¼üÂë       ¼ü   ¼üÂë     ¼ü      ¼üÂë 
       A   65       0   96        F1   112     Backspace    8 
       B   66       1   97        F2   113     Tab       9 
       C   67       2   98        F3   114     Clear      12 
@@ -26,35 +26,47 @@
       T   84       --   --       --   --      Delete      46 
       U   85       --   --       --   --      Help       47 
       V   86       --   --       --   --      Num Lock     144
-å…¶ä»–æœªåˆ—å‡ºçš„å­—æ¯å’Œæ•°å­—é”®ç›˜ä¸ºï¼šord(c)
+ÆäËûÎ´ÁĞ³öµÄ×ÖÄ¸ºÍÊı×Ö¼üÅÌÎª£ºord(c)
 '''
 
 import win32api
 import win32con
 from ctypes import *
 import win32clipboard
+import time
+
 
 def autoinput(keycode):
-    win32api.keybd_event(keycode,0,0,0)   #æŒ‰é”®
-    win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  # é‡Šæ”¾æŒ‰é”®
+    time.sleep(0.1)
+    win32api.keybd_event(keycode,0,0,0)   #°´¼ü
+    win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  # ÊÍ·Å°´¼ü
 
 
 def combinationkey(com_keycode,keycode):
+    time.sleep(0.1)
     win32api.keybd_event(com_keycode,0,0,0)
     win32api.keybd_event(keycode,0,0,0) 
     win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  
     win32api.keybd_event(com_keycode,0,win32con.KEYEVENTF_KEYUP,0)
 
 def combinationkey_3(com_keycode,com_keycode1,keycode):
+    time.sleep(0.1)
     win32api.keybd_event(com_keycode,0,0,0)
     win32api.keybd_event(com_keycode1,0,0,0) 
     win32api.keybd_event(keycode,0,0,0) 
     win32api.keybd_event(keycode,0,win32con.KEYEVENTF_KEYUP,0)  
     win32api.keybd_event(com_keycode,0,win32con.KEYEVENTF_KEYUP,0)
     win32api.keybd_event(com_keycode1,0,win32con.KEYEVENTF_KEYUP,0)
+
+def input_string(i_string):
+    for i in i_string:
+        time.sleep(0.1)
+        autoinput(ord(i.upper()))
+        
+
 def gettext():
     '''
-        è·å–å‰ªåˆ‡æ¿å†…å®¹
+        »ñÈ¡¼ôÇĞ°åÄÚÈİ
     '''
     win32clipboard.OpenClipboard()
     t = w.GetClipboardData(win32con.CF_TEXT)
@@ -63,16 +75,42 @@ def gettext():
 
 def settext(aString):
     '''
-        å†™å…¥å‰ªåˆ‡æ¿å†…å®¹
+        Ğ´Èë¼ôÇĞ°åÄÚÈİ
     '''
-    w.OpenClipboard()
-    w.EmptyClipboard()
-    w.SetClipboardData(win32con.CF_TEXT, aString)
-    w.CloseClipboard()
+    win32clipboard.OpenClipboard()
+    win32clipboard.EmptyClipboard()
+    win32clipboard.SetClipboardData(win32con.CF_TEXT, aString)
+    win32clipboard.CloseClipboard()
+    
 
-combinationkey_3(17,18,90)
-autoinput(ord('z'))
-autoinput(ord('h'))
+
+if __name__ == '__main__':
+    
+    combinationkey_3(17,18,90)
+    autoinput(13)
+    input_string('94644276')
+    autoinput(13)
+    time.sleep(0.2)
+    settext('ÎÒÊÇÒ»¸öĞ¡±¿Öí£¡')
+    for n in range(3):
+        combinationkey(17,ord('V'))
+        time.sleep(0.1)
+        autoinput(32)
+        time.sleep(0.1)
+        autoinput(ord(str(n+1)))
+        time.sleep(0.1)
+        combinationkey(17,13)
+
+    time.sleep(0.1)
+    combinationkey_3(17,18,65)
+    time.sleep(0.1)
+    windll.user32.SetCursorPos(100, 100)
+    time.sleep(0.1)
+    autoinput(13)
+    time.sleep(0.1)
+    combinationkey(17,13)
+    
+    
 
 
 
