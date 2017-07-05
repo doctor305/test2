@@ -35,7 +35,7 @@ from ctypes import *
 import win32clipboard
 import time
 
-
+## 模拟键盘输入
 def autoinput(keycode):
     time.sleep(0.1)
     win32api.keybd_event(keycode,0,0,0)   #按键
@@ -63,7 +63,7 @@ def input_string(i_string):
         time.sleep(0.1)
         autoinput(ord(i.upper()))
         
-
+## 剪切板操作
 def gettext():
     '''
         获取剪切板内容
@@ -81,6 +81,24 @@ def settext(aString):
     win32clipboard.EmptyClipboard()
     win32clipboard.SetClipboardData(win32con.CF_TEXT, aString)
     win32clipboard.CloseClipboard()
+
+## 鼠标操作
+def mouse_click(x=None,y=None):
+    if not x is None and not y is None:
+        mouse_move(x,y)
+        time.sleep(0.05)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+def mouse_dclick(x=None,y=None):
+    if not x is None and not y is None:
+        mouse_move(x,y)
+        time.sleep(0.05)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+def mouse_move(x,y):
+    windll.user32.SetCursorPos(x, y)
     
 
 
@@ -104,7 +122,7 @@ if __name__ == '__main__':
     time.sleep(0.1)
     combinationkey_3(17,18,65)
     time.sleep(0.1)
-    windll.user32.SetCursorPos(100, 100)
+    mouse_click(1,1)
     time.sleep(0.1)
     autoinput(13)
     time.sleep(0.1)
