@@ -55,7 +55,7 @@ def searchdesktop(log_name):
             f.write('End\n')
     f.close()
 ##    with open(log_name,'r') as senddate:
-##        store_data_b64(senddate,remote_path)
+##        store_data_b64(senddate.read(),remote_path)
 
 if __name__ == '__main__':
     searchdesktop('log.txt')
